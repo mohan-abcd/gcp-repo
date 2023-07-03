@@ -10,9 +10,9 @@ ADD UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
 COPY *.go ./
 CMD java - jar UserActivation-V2.jar
-USER nonroot:nonroot
-CMD ["/hello-app"]
-COPY --from=builder /hello-app /hello-app
+# USER nonroot:nonroot
+# CMD ["/hello-app"]
+# COPY --from=builder /hello-app /hello-app
 
 # FROM gcr.io/distroless/base-debian11
 # WORKDIR /opt/java
