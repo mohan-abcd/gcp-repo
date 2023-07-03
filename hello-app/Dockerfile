@@ -1,4 +1,4 @@
-FROM ubuntu:20.4
+FROM ubuntu
 RUN apt-get update && apt-get install openjdk-17-jdk openjdk-17-jre
 RUN mkdir /opt/app
 WORKDIR /opt/app
