@@ -8,6 +8,7 @@ WORKDIR /opt/app
 # RUN tar -xzf openjdk-17_linux-x64_bin.tar.gz && \
 #     rm -rf openjdk-17_linux-x64_bin.tar.gz
 RUN go mod init hello-app
+RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
 ADD UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
 COPY *.go ./
