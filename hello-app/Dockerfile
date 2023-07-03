@@ -1,7 +1,7 @@
 FROM centos:8
 WORKDIR /app
 ENV PATH=$PATH:/opt/java/jdk-15.0.2/bin
-RUN https://download.oracle.com/java/17/archive/jdk-17.0.7_linux-aarch64_bin.tar.gz
+RUN curl  https://download.oracle.com/java/17/archive/jdk-17.0.7_linux-aarch64_bin.tar.gz
 RUN tar -xzf jdk-17.0.7_linux-x64_bin.tar.gz && \
     rm -rf jdk-17.0.7_linux-x64_bin.tar.gz
 RUN go mod init hello-app
