@@ -1,5 +1,5 @@
 FROM centos:8
-ENV PATH=$PATH:/opt/java/jdk-17/bin
+# ENV PATH=$PATH:/opt/java/jdk-17/bin
 WORKDIR /opt/app
 # RUN sudo apt-get update
 # RUN sudo apt-get install -y wget
