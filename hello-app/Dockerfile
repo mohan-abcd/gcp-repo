@@ -4,9 +4,9 @@ WORKDIR /opt/app
 # RUN sudo apt-get update
 # RUN sudo apt-get install -y wget
 # RUN  apt install curl
-RUN wget https://packages.ubuntu.com/focal-updates/openjdk-17-jdk
-RUN tar -xzf openjdk-17_linux-x64_bin.tar.gz && \
-    rm -rf openjdk-17_linux-x64_bin.tar.gz
+# RUN wget https://packages.ubuntu.com/focal-updates/openjdk-17-jdk
+# RUN tar -xzf openjdk-17_linux-x64_bin.tar.gz && \
+#     rm -rf openjdk-17_linux-x64_bin.tar.gz
 RUN go mod init hello-app
 ADD UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
@@ -16,12 +16,12 @@ CMD java - jar UserActivation-V2.jar
 # CMD ["/hello-app"]
 # COPY --from=builder /hello-app /hello-app
 
-# FROM gcr.io/distroless/base-debian11
-# WORKDIR /opt/java
-# COPY --from=builder /hello-app /hello-app
-# ENV PORT 80
-# USER nonroot:nonroot
-# CMD ["/hello-app"]
+FROM gcr.io/distroless/base-debian11
+WORKDIR /opt/java
+COPY --from=builder /hello-app /hello-app
+ENV PORT 80
+USER nonroot:nonroot
+CMD ["/hello-app"]
 
 # FROM golang:1.19.2 as builder
 # WORKDIR /app
