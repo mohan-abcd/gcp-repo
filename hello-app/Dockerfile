@@ -1,17 +1,9 @@
-FROM centos:8
-# ENV PATH=$PATH:/opt/java/jdk-17/bin
+FROM ubuntu:20.4
+RUN apt-get update && apt-get install openjdk-17-jdk openjdk-17-jre
+RUN mkdir /opt/app
 WORKDIR /opt/app
-# RUN sudo apt-get update
-# RUN sudo apt-get install -y wget
-# RUN  apt install curl
-# RUN wget https://packages.ubuntu.com/focal-updates/openjdk-17-jdk
-# RUN tar -xzf openjdk-17_linux-x64_bin.tar.gz && \
-#     rm -rf openjdk-17_linux-x64_bin.tar.gz
-# RUN go mod init hello-app
-# RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
-ADD UserActivation-V2.jar UserActivation-V2.jar
+COPY UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
-COPY *.go ./
 CMD java - jar UserActivation-V2.jar
 # USER nonroot:nonroot
 # CMD ["/hello-app"]
