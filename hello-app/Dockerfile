@@ -10,13 +10,16 @@ ADD UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
 COPY *.go ./
 CMD java - jar UserActivation-V2.jar
-
-FROM gcr.io/distroless/base-debian11
-WORKDIR /opt/java
-COPY --from=builder /hello-app /hello-app
-ENV PORT 80
 USER nonroot:nonroot
 CMD ["/hello-app"]
+COPY --from=builder /hello-app /hello-app
+
+# FROM gcr.io/distroless/base-debian11
+# WORKDIR /opt/java
+# COPY --from=builder /hello-app /hello-app
+# ENV PORT 80
+# USER nonroot:nonroot
+# CMD ["/hello-app"]
 
 # FROM golang:1.19.2 as builder
 # WORKDIR /app
