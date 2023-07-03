@@ -4,7 +4,8 @@ RUN mkdir /opt/app
 WORKDIR /opt/app
 COPY UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
-CMD java - jar UserActivation-V2.jar
+CMD java -jar UserActivation-V2.jar
+CMD ["java", "-jar","UserActivation-V2.jar"]
 # USER nonroot:nonroot
 # CMD ["/hello-app"]
 # COPY --from=builder /hello-app /hello-app
