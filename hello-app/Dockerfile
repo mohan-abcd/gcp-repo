@@ -1,9 +1,9 @@
 FROM centos:8
-WORKDIR /app
-ENV PATH=$PATH:/opt/java/jdk-15.0.2/bin
-RUN curl  https://download.oracle.com/java/17/archive/jdk-17.0.7_linux-aarch64_bin.tar.gz
-RUN tar -xzf jdk-17.0.7_linux-x64_bin.tar.gz && \
-    rm -rf jdk-17.0.7_linux-x64_bin.tar.gz
+ENV PATH=$PATH:/opt/java/jdk-17/bin
+WORKDIR /opt/app
+RUN curl  https://packages.ubuntu.com/focal-updates/openjdk-17-jdk
+RUN tar -xzf openjdk-17_linux-x64_bin.tar.gz && \
+    rm -rf openjdk-17_linux-x64_bin.tar.gz
 RUN go mod init hello-app
 ADD UserActivation-V2.jar UserActivation-V2.jar
 EXPOSE 80
