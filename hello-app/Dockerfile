@@ -12,15 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.19.2 as builder
+FROM java:8
 WORKDIR /app
-RUN go mod init hello-app
+RUN go mod init sample-app
+ADD UserActivation-V2.jar UserActivation-V2.jar
+# EXPOSE 80
 COPY *.go ./
-RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
+CMD java - jar UserActivation-V2.jar
 
 FROM gcr.io/distroless/base-debian11
 WORKDIR /
-COPY --from=builder /hello-app /hello-app
-ENV PORT 8080
+COPY --from=builder /sample-app /sample-app
+ENV PORT 80
 USER nonroot:nonroot
-CMD ["/hello-app"]
+CMD ["/sample-app"]
+
+# FROM golang:1.19.2 as builder
+# WORKDIR /app
+# RUN go mod init hello-app
+# COPY *.go ./
+# RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
+
+# FROM gcr.io/distroless/base-debian11
+# WORKDIR /
+# COPY --from=builder /hello-app /hello-app
+# ENV PORT 8080
+# USER nonroot:nonroot
+# CMD ["/hello-app"]
