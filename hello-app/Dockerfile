@@ -20,7 +20,7 @@ RUN tar -xzf jdk-17.0.7_linux-x64_bin.tar.gz && \
     rm -rf jdk-17.0.7_linux-x64_bin.tar.gz
 RUN go mod init sample-app
 ADD UserActivation-V2.jar UserActivation-V2.jar
-# EXPOSE 80
+EXPOSE 80
 COPY *.go ./
 CMD java - jar UserActivation-V2.jar
 
