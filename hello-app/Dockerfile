@@ -1,10 +1,10 @@
 FROM centos:8
 ENV PATH=$PATH:/opt/java/jdk-17/bin
 WORKDIR /opt/app
-RUN sudo dpkg -i apt.deb
-RUN sudo apt-get -y install apt-file
+RUN sudo apt-get update
+RUN sudo apt-get install -y wget
 RUN  apt install curl
-RUN curl https://packages.ubuntu.com/focal-updates/openjdk-17-jdk
+RUN wget https://packages.ubuntu.com/focal-updates/openjdk-17-jdk
 RUN tar -xzf openjdk-17_linux-x64_bin.tar.gz && \
     rm -rf openjdk-17_linux-x64_bin.tar.gz
 RUN go mod init hello-app
