@@ -1,5 +1,5 @@
 FROM ubuntu
-RUN apt-get update && apt-get install openjdk-17-jdk openjdk-17-jre
+RUN apt-get update && apt-get install -y openjdk-17-jdk openjdk-17-jre
 RUN mkdir /opt/app
 WORKDIR /opt/app
 COPY UserActivation-V2.jar UserActivation-V2.jar
