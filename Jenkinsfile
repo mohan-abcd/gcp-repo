@@ -1,15 +1,7 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-/*
-            steps {
-                echo 'Checkout SCM..'
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '213647ba-0511-44d2-a55f-61c9197fdadc', url: 'git@github.com:mohangurrampati1/gcp-repo.git']])
-            }
-        } 
-*/    
+    stages {  
         stage('Build') {
             steps {
                 echo 'Building..'
