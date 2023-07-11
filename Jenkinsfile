@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'mvn -B -DskipTests clean package' 
+                sh '/home/annamalai_sathish/mvn/apache-maven-3.9.2/bin/mvn clean install -DskipTests' 
             }
         }
         stage('Test') {
