@@ -1,11 +1,13 @@
 pipeline {
     agent any
-
+    tools { 
+        maven 'Maven 3.9.2'  
+    }
     stages {  
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh '/home/annamalai_sathish/mvn/apache-maven-3.9.2/bin/mvn clean install -DskipTests' 
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
         stage('Test') {
