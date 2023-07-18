@@ -1,19 +1,13 @@
-# FROM rhel7
-# RUN apt update
-# RUN mkdir /home/mohan
-# RUN cd /home/mohan
-# COPY ./home/mohan
-# WORKDIR /home/mohan
-# EXPOSE 80
-# CMD ["java", "-jar","hello.jar"]
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
-FROM registry.access.redhat.com/rhel7
-#RUN  yum update
-RUN mkdir /home/mohan
-#RUN cd /home/mohan
-#COPY ./home/mohan 
-#COPY /home/mohan_gurrampati/gcp-repo/hello-app/hello.jar /app/service.jar
-COPY hello.jar hello.jar
-WORKDIR /home/mohan
-EXPOSE 80
-CMD ["java", "-jar","/app/hello.jar"]
+RUN yum update -y && yum -y install java-17-openjdk && \
+    java -version
+
+RUN curl -O https://downloads.apache.org/tomcat/tomcat-10/v10.1.11/bin/apache-tomcat-10.1.11.tar.gz && \
+    tar xvf apache-tomcat-10.1.11.tar.gz -C /opt/tomcat/ --strip-components=1
+
+RUN useradd --system -U --create-home --home-dir /opt/tomcat -s /bin/false tomcat && \
+    chown -R tomcat:tomcat /opt/tomcat/ && \
+    chmod -R u+x /opt/tomcat/bin
+
+USER tomcat
